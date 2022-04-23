@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>栈的封装</title>
 </head>
 <body>
-    
+    <script>
+
+        /*  构建Stack类
+        *   1. push
+        *   2. pop
+        *   3. peek
+        *   4. isEmpty
+        *   5. size
+        *   6. toString
+        */
+
+        class Stack {
+            constructor(){
+                this.items = []
+            }
+            // 1. push
+            push(element){
+                this.items.push(element)
+            }
+            // 2. pop
+            pop(){
+                return this.items.pop()
+            }
+            // 3. peek
+            peek(){
+                return this.items[this.items.length - 1]
+            }
+            // 4. isEmpty
+            isEmpty(){
+                return this.items.length === 0
+            }
+            // 5. size
+            size(){
+                return this.items.length
+            }
+            // 6. toString
+            toString(){
+                return this.items.join(' ')
+            }
+        }
+
+        let s = new Stack()
+
+        s.push(100);
+
+        console.log(s.size());
+
+        s.push(1010);
+
+        console.log(s.toString());
+
+        console.log(s.isEmpty());
+
+        console.log(s);
+    </script>
 </body>
 </html>
