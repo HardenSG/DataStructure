@@ -60,7 +60,32 @@
 
         console.log(s.isEmpty());
 
-        console.log(s);
+        // console.log(s);
+
+        //十进制转换二进制
+        function toBin(number){
+            // 定义栈对象
+            let stack = new Stack();
+            // 定义弹出的二进制文字
+            let binNumber = '';
+            //每次都将取余的数压入到栈
+            while(number > 0) {
+
+                let i = number % 2;
+
+                stack.push(i)
+
+                number = Math.floor(number / 2)
+
+            }
+            while(!stack.isEmpty()){
+                binNumber += stack.pop()
+            }
+            return binNumber
+        }
+
+        console.log(toBin(2));
+
     </script>
 </body>
 </html>

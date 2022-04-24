@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 基于数组实现队列
+         * 1. 特点前端删除，后端插入
+         * 2. push
+         * 3. shift
+         * 4. 查看前端的元素
+         * 5. isEmpty
+         * 6. size
+         * 7. toString
+        */
+        class Queue{
+            constructor(){
+                this.items = []
+            }
+            // 2. 
+            push(element){
+                this.items.push(element)
+            }
+            // 3.
+            shift(){
+                return this.items.shift()
+            }
+            // 4. 
+            top(){
+                return this.items[0]
+            }
+            // 5. 
+            isEmpty(){
+                return this.items.length === 0
+            }
+            // 6.
+            size(){
+                return this.items.length
+            }
+            // 7.
+            toString(){
+                return this.items.join(" ")
+            }
+        }
+
+        let q = new Queue();
+
+        let array = ['队列','数组','栈','链表']
+
+        array.forEach((value,index)=>{
+            q.push(value)
+        })
+
+        console.log(q.shift());
+
+        console.log(q.top());
+
+        console.log(q.isEmpty());
+
+        console.log(q.size());
+
+        console.log(q.toString());
+
+        console.log(q);
+
+        /**
+         * 封装函数，实现击鼓传花（队列面试题）
+         * 1. 需要参数（nameList，num）
+        */
+       function passGame(nameList,num){
+           
+            let Q = new Queue()
+
+            nameList.forEach((value,index)=>{
+                Q.push(value)
+            })
+
+            while (Q.size() !== 1) {
+                
+                for (let index = 0; index < num - 1; index++) {
+                    //循环的目的是为了将不是第num数的元素从前端删除并插入至后端
+                    Q.push(Q.shift())
+                }
+
+                Q.shift()
+            }
+
+            return Q.top()
+            
+       }
+       
+       console.log(passGame(['小红','小花','小白','小兰'],3));
+
+    </script>
+</body>
+</html>

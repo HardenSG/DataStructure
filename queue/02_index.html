@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         *  构建优先级队列
+         * 1. 首先具备基本功能如push，pop，shift等等
+         * 2. push需要传入的参数有所不同，除基本的element之外，还需要优先级Priority
+        */
+        class PriorityQueue{
+            constructor(){
+                this.items = []
+            }
+            // push
+            push(element,priority){
+                // 将两个元素包裹起来，成为一个对象
+                let obj = {element,priority}
+                // 如果为空，直接插入
+                if (this.isEmpty()) {
+                    this.items.push(obj)
+                }else{
+                    for (let i = 0 ;i < this.size(); i++) {
+                        if (obj.priority < this.items[i].priority) {
+                            this.items.splice(i,0,obj)
+                            break;
+                        }
+                    }
+                }
+
+            }
+            isEmpty(){
+                return this.items.length === 0
+            }
+            size(){
+                return this.items.length
+            }
+
+        }
+        let p = new PriorityQueue();
+
+        let array = [
+            {
+                element:'first',
+                priority:100
+            },
+            {
+                element:'second',
+                priority:10
+            },
+            {
+                element:'third',
+                priority:11
+            },
+            {
+                element:'fourth',
+                priority:1
+            }
+        ]
+
+        array.forEach((value,index)=>{
+            p.push(value.element,value.priority)
+        })
+
+        console.log(p); 
+
+    </script>
+</body>
+</html>
