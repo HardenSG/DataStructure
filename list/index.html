@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 封装链表类 -->
+    <script>
+        /**链表
+         * 首先包括一个火车头，head，其次的就是每个节点
+         * 节点包括数据和下个节点的引用
+         * 所以不妨再创建一个节点类
+        */
+
+        /**节点类
+         * 节点包括两个内容，
+         * 但是由于next部分可能还未存在，
+         * 所以形参可以先不传
+        */
+        class Node{
+            constructor( data ) {
+                this.data = data
+                this.next = null
+            }
+        }
+
+        /**链表功能
+         * append：       尾部添加
+         * insert  ：       向特定位置插入项
+         * get    ：       获取对应位置的元素
+         * indexOf（）：   返回索引，没有为-1
+         * update ：       修改某位置的元素
+         * removeAt ：     删除特定位置的元素
+         * remove：        列表移除一项
+         * isEmpty：
+         * size： 
+         * toString（）
+        */
+
+
+        class LinkedList {
+            constructor(  ) {
+                this.head = null
+                this.length = 0
+            }
+            append( data ) {
+                const newNode = new Node( data )
+
+                if( !this.length ) {
+
+                    this.head = newNode
+
+                    // console.log('我是头',this.head);
+
+                }else{
+                    //非第一个元素情况
+                    let current = this.head
+
+                    while( current.next ) {
+                        //只要while能执行，就查找最后一个元素的next并赋值
+                        current = current.next
+                    }
+
+                    current.next = newNode
+
+                }
+                this.length++
+            }
+            toString( ){
+
+                let current = this.head
+
+                let returnString = []
+
+                while( current ){
+
+                    returnString.push( current.data )
+
+                    current = current.next
+                }
+
+                return returnString.join(",")
+            }
+            insert( data , position ){
+                
+            }
+        
+        }
+
+        let list = new LinkedList()
+
+        list.append(1)
+        list.append(2)
+        list.append(3)
+        list.append(4)
+        list.append(5)
+        
+        console.log(list.toString());
+
+
+
+
+    </script>
+</body>
+</html>
